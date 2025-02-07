@@ -4,7 +4,6 @@ from enum import Enum
 import requests
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
 class Weather:

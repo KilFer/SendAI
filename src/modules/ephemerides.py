@@ -59,8 +59,8 @@ class Ephemerides:
         if self.limit_values >= len(arr):
             return arr
 
-        selected = set(random.sample(arr, self.limit_values))  # Randomly select x unique elements
-        return [item for item in arr if item in selected]  # Maintain original order
+        selected = set(random.sample(arr, self.limit_values))
+        return [item for item in arr if item in selected]
 
 
     def contains_filtered_words(self, str):

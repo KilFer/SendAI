@@ -1,11 +1,11 @@
-import os
+import logging
 from typing import Dict, Any
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 
 from modules import News, Weather, Quote, Modules, Ephemerides
-from utils import Cache
+from utils import Cache, log
 
 load_dotenv()
 app = FastAPI()
@@ -20,6 +20,7 @@ async def generate_info(
     Generate and return information from selected modules.
     Example usage: /generate_info?modules=news,weather
     """
+    log(f"Modules received: {modules}", logging.INFO)
     selected_modules = modules.split(",")
     valid_modules = Modules.from_strings(selected_modules)
 

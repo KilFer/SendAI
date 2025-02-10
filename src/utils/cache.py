@@ -1,16 +1,14 @@
 import logging
 import time
-import os
-from dotenv import load_dotenv
 from .logger import log
+from ..config import CONFIG
 
-load_dotenv()
 
 class Cache:
 
     def __init__(self):
         self.cache = {}
-        self.caching_time = int(os.getenv("CACHING_TIME"))
+        self.caching_time = int(CONFIG["general"]["caching_time"])
         log( f"Cache defined as {self.caching_time} seconds", logging.INFO)
 
     def get_cached_data(self, module_name: str, reload: bool, fetch_func):

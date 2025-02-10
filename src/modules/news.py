@@ -1,9 +1,7 @@
-import os
 import requests
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
 
-load_dotenv()
+from src.config import CONFIG
 
 
 def yesterday_date():
@@ -13,14 +11,14 @@ def yesterday_date():
 
 class News:
     def __init__(self):
-        self.api_key = os.getenv('NEWS_API_KEY')
+        self.api_key = CONFIG["news"]["api_key"]
         self.api_url = 'https://api.worldnewsapi.com/top-news'
         self.country = 'es'
         self.language = 'es'
 
     @staticmethod
     def can_be_loaded():
-        return bool(os.getenv("NEWS_API_KEY"))
+        return bool(CONFIG["news"]) and bool(CONFIG["news"]["api_key"])
 
     def get(self):
         params = {

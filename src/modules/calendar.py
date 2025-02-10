@@ -1,23 +1,24 @@
 import caldav
-import os
-from dotenv import load_dotenv
-from datetime import datetime, timedelta
-
-# Load environment variables
-load_dotenv()
+from datetime import datetime
+from src.config import CONFIG
 
 class Calendar:
     def __init__(self):
         self.client = caldav.DAVClient(
-            url=os.getenv("CALENDAR_CALDAV_URL"),
-            username=os.getenv("CALENDAR_CALDAV_USERNAME"),
-            password=os.getenv("CALENDAR_CALDAV_PASSWORD")
+            url=CONFIG["calendar"]["caldav_url"],
+            # url=os.getenv("CALENDAR_CALDAV_URL"),
+            # username=os.getenv("CALENDAR_CALDAV_USERNAME"),
+            username=CONFIG["calendar"]["caldav_username"],
+            # password=os.getenv("CALENDAR_CALDAV_PASSWORD")
+            password = CONFIG["calendar"]["caldav_password"]
         )
 
     @staticmethod
     def can_be_loaded():
-        return bool(os.getenv("CALENDAR_CALDAV_URL")) and bool(os.getenv("CALENDAR_CALDAV_USERNAME")) and bool(
-            os.getenv("CALENDAR_CALDAV_PASSWORD"))
+        return (bool(CONFIG["calendar"])
+                and bool(CONFIG["calendar"]["caldav_url"])
+                and bool(CONFIG["calendar"]["caldav_username"])
+                and bool(CONFIG["calendar"]["caldav_password"]))
 
     def get(self):
         """

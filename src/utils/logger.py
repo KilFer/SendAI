@@ -1,11 +1,9 @@
 import logging
-import os
-from dotenv import load_dotenv
+from src.config import CONFIG
 
-load_dotenv()
 
 logger = logging.getLogger(__name__)
-loglevel = os.getenv("LOG_LEVEL", "INFO").upper()
+loglevel = CONFIG["general"]["log_level"].upper()
 logger.setLevel(loglevel)
 handler = logging.StreamHandler()
 

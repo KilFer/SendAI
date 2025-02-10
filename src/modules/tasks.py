@@ -1,22 +1,20 @@
 import logging
-import os
 from datetime import datetime
 from functools import cmp_to_key
 import requests
-from dotenv import load_dotenv
-from src.utils import log
 
-load_dotenv()
+from src.config import CONFIG
+from src.utils import log
 
 class Tasks:
 
     def __init__(self):
-        self.bearer_key = os.getenv("TASKS_TODOIST_BEARER_KEY")
+        self.bearer_key = CONFIG["tasks"]["todoist_api_key"]
         self.api_url = "https://api.todoist.com/rest/v2"
 
     @staticmethod
     def can_be_loaded():
-        return bool(os.getenv("TASKS_TODOIST_BEARER_KEY"))
+        return bool(CONFIG["tasks"]) and bool(CONFIG["tasks"]["todoist_api_key"])
 
     def get(self):
         headers = {

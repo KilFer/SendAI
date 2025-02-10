@@ -1,21 +1,17 @@
-import os
 from enum import Enum
-
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
+from src.config import CONFIG
 
 
 class Weather:
     def __init__(self):
-        self.api_key = os.getenv('WEATHER_API_KEY')
-        self.location = os.getenv('WEATHER_LOCATION')
+        self.api_key = CONFIG["weather"]["api_key"]
+        self.location = CONFIG["weather"]["location"]
         self.api_url = 'https://www.meteosource.com/api/v1/free/point'
 
     @staticmethod
     def can_be_loaded():
-        return bool(os.getenv('WEATHER_API_KEY')) and bool(os.getenv('WEATHER_LOCATION'))
+        return bool(CONFIG["weather"]) and bool(CONFIG["weather"]["api_key"]) and bool(CONFIG["weather"]["location"])
 
     def get(self):
         params = {

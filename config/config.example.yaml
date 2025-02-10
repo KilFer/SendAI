@@ -1,0 +1,26 @@
+ai:
+  openai_key: # API KEY FOR OPENAI. Integration not ready.
+
+news:
+  api_key: # API Key from api.worldnewsapi.com
+  limit_results: # Number of results that are gonna be printed on the news section. TODO PENDING
+
+weather:
+  api_key: # API Key from www.meteosource.com
+  location: # Location ID from www.meteosource.com
+
+ephemerides:
+  words_filtered: # Words filtered from Ephemerides module
+  limit_results: 5 # Number limit of result from Ephemerides module
+
+calendar:
+  caldav_url: # CalDAV at which the Calendar module will be connected
+  caldav_username: # CaLDAV Username
+  caldav_password: # CalDAV Password
+
+tasks:
+  todoist_api_key: # Todoist API Key
+
+general:
+  caching_time: 180 #Time of caching the results, in seconds.
+  log_level: debug

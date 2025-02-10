@@ -1,10 +1,6 @@
-import os
 import random
-
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
+from src.config import CONFIG
 
 def parse_text(str):
     result = str.replace('&#8211;','–')
@@ -14,8 +10,8 @@ class Ephemerides:
 
     def __init__(self):
         self.api_url = "https://today.zenquotes.io/api"
-        self.filtered_words = os.getenv("EPHEMERIDES_WORDS_FILTERED").split(',')
-        self.limit_values = int(os.getenv("EPHEMERIDES_LIMIT_RESULTS"))
+        self.filtered_words = CONFIG["ephemerides"]["words_filtered"].split(',')
+        self.limit_values = int(CONFIG["ephemerides"]["limit_results"])
 
     @staticmethod
     def can_be_loaded():

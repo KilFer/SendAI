@@ -1,16 +1,11 @@
 import logging
 from typing import Dict, Any
-
-from dotenv import load_dotenv
 from fastapi import FastAPI, Query
-
 from modules import Modules, load_modules
 from utils import Cache, log
 
-load_dotenv()
 app = FastAPI()
 cache = Cache()
-
 loaded_modules = load_modules()
 
 

@@ -13,12 +13,14 @@ cache = Cache()
 
 loaded_modules = load_modules()
 
+
 @app.get("/modules")
 async def list_modules():
     """
     Returns a list of all available modules.
     """
     return {"modules": [module.value for module in loaded_modules.keys()]}
+
 
 @app.get("/generate_info")
 async def generate_info(
@@ -27,7 +29,8 @@ async def generate_info(
 ) -> Dict[str, Any]:
     """
     Generate and return information from selected modules.
-    Example usage: /generate_info?modules=news,weather
+     - Modules: Modules to return.
+     - Reload: If the info should be loaded directly. If not passed, will try to get it from cache.
     """
     log(f"Modules received: {modules}", logging.INFO)
     selected_modules = modules.split(",")
@@ -39,12 +42,6 @@ async def generate_info(
         if called_module in loaded_modules:
             response_data[called_module.value] = cache.get_cached_data(called_module.value, reload, loaded_modules[called_module].get)
         else:
-            log(f"ERROR. Module {called_module.value} is not loaded.", logging.WARN)
+            log(f"ERROR. Module {called_module.value} (as received) is not loaded.", logging.WARN)
 
     return response_data
-
-@app.on_event("startup")
-async def startup_event():
-
-    log(f"Loaded modules", logging.INFO)
-    log("🚀 Startup complete!", logging.INFO)

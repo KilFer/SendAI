@@ -37,10 +37,7 @@ class Calendar:
             if not calendars:
                 return {"error": "No calendars found"}
 
-            calendar = calendars[0]  # Using the first available calendar
-
-            # Retrieve events occurring today
-            results = calendar.date_search(start, end)
+            results = calendars[0].date_search(start, end)
 
             for event in results:
                 events.append({

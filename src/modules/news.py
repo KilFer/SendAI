@@ -34,6 +34,7 @@ class News:
             response.raise_for_status()
             data = response.json()
             top_news = data.get('top_news', [])
+
             news_list = []
             for news in top_news:
                 article = news.get('news', [])[0]
@@ -46,6 +47,7 @@ class News:
                     'number_sources': number_sources
                 }
                 news_list.append(news_item)
+
             return news_list
         except requests.exceptions.RequestException as e:
             print(f"Error fetching news: {e}")

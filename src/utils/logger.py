@@ -9,7 +9,7 @@ loglevel = os.getenv("LOG_LEVEL", "INFO").upper()
 logger.setLevel(loglevel)
 handler = logging.StreamHandler()
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - [%(levelname)s] %(message)s')
 handler.setFormatter(formatter)
 
 logger.addHandler(handler)

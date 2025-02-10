@@ -4,6 +4,10 @@ class Quote:
     def __init__(self):
         self.api_url = 'https://zenquotes.io/api/today'
 
+    @staticmethod
+    def can_be_loaded():
+        return True
+
     def get(self):
         try:
             response = requests.get(self.api_url)

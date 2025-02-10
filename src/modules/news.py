@@ -18,6 +18,10 @@ class News:
         self.country = 'es'
         self.language = 'es'
 
+    @staticmethod
+    def can_be_loaded():
+        return bool(os.getenv("NEWS_API_KEY"))
+
     def get(self):
         params = {
             'api-key': self.api_key,

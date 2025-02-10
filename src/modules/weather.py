@@ -6,11 +6,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class Weather:
     def __init__(self):
         self.api_key = os.getenv('WEATHER_API_KEY')
         self.location = os.getenv('WEATHER_LOCATION')
         self.api_url = 'https://www.meteosource.com/api/v1/free/point'
+
+    @staticmethod
+    def can_be_loaded():
+        return bool(os.getenv('WEATHER_API_KEY')) and bool(os.getenv('WEATHER_LOCATION'))
 
     def get(self):
         params = {

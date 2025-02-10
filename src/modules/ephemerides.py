@@ -17,6 +17,10 @@ class Ephemerides:
         self.filtered_words = os.getenv("EPHEMERIDES_WORDS_FILTERED").split(',')
         self.limit_values = int(os.getenv("EPHEMERIDES_LIMIT_RESULTS"))
 
+    @staticmethod
+    def can_be_loaded():
+        return True
+
     def get(self):
         try:
 
